@@ -1,0 +1,125 @@
+{
+  "version": "6",
+  "dialect": "sqlite",
+  "id": "1ccc5d79-68a4-45fc-a1a6-8cfe5cda75cf",
+  "prevId": "00000000-0000-0000-0000-000000000000",
+  "tables": {
+    "history": {
+      "name": "history",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": true
+        },
+        "timestamp": {
+          "name": "timestamp",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "availableFormats": {
+          "name": "availableFormats",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "plainText": {
+          "name": "plainText",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "isUrl": {
+          "name": "isUrl",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "html": {
+          "name": "html",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "rtf": {
+          "name": "rtf",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "blob": {
+          "name": "blob",
+          "type": "blob",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "imageSha256": {
+          "name": "imageSha256",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "filePaths": {
+          "name": "filePaths",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        }
+      },
+      "indexes": {
+        "timestampIdx": {
+          "name": "timestampIdx",
+          "columns": [
+            "timestamp"
+          ],
+          "isUnique": false
+        },
+        "plainTextIdx": {
+          "name": "plainTextIdx",
+          "columns": [
+            "plainText"
+          ],
+          "isUnique": false
+        },
+        "filePathsIdx": {
+          "name": "filePathsIdx",
+          "columns": [
+            "filePaths"
+          ],
+          "isUnique": false
+        },
+        "imageSha256Idx": {
+          "name": "imageSha256Idx",
+          "columns": [
+            "imageSha256"
+          ],
+          "isUnique": false
+        }
+      },
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    }
+  },
+  "enums": {},
+  "_meta": {
+    "schemas": {},
+    "tables": {},
+    "columns": {}
+  },
+  "internal": {
+    "indexes": {}
+  }
+}
