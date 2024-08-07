@@ -38,12 +38,18 @@ async function clipboardChangeHandler() {
 		if (err && is.dev) {
 			console.error(err);
 		}
+		if (is.dev) {
+			console.log("History updated");
+		}
 		return;
 	}
 
 	const [err] = await to(db.insert(historyTable).values(history));
 	if (err && is.dev) {
 		console.error(err);
+	}
+	if (is.dev) {
+		console.log("New history added");
 	}
 }
 
