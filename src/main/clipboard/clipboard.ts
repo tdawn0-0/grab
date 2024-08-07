@@ -1,5 +1,5 @@
 import { is } from "@electron-toolkit/utils";
-import to from "await-to-js";
+import { to } from "await-to-js";
 import { eq } from "drizzle-orm";
 import { clipboard } from "electron";
 import clipboardEx from "electron-clipboard-ex";
@@ -35,14 +35,14 @@ async function clipboardChangeHandler() {
 				})
 				.where(eq(historyTable[existColumn], history[existColumn])),
 		);
-		if (is.dev) {
+		if (err && is.dev) {
 			console.error(err);
 		}
 		return;
 	}
 
 	const [err] = await to(db.insert(historyTable).values(history));
-	if (is.dev) {
+	if (err && is.dev) {
 		console.error(err);
 	}
 }
@@ -88,28 +88,38 @@ async function clipboardToHistory(formats: string[]) {
 }
 
 async function isHistoryExist(history: NewHistory): Promise<keyof NewHistory | false> {
-	if (history.imageSha256) {
-		const exist = await db.query.historyTable.findFirst({
-			with: {
-				imageSha256: history.imageSha256,
-			},
-		});
+	if (history.image && history.imageSha256) {
+		const [err, exist] = await to(
+			db
+				.select()
+				.from(historyTable)
+				.where(eq(historyTable.imageSha256, history.imageSha256))
+				.limit(1),
+		);
+		if (err && is.dev) {
+			console.error(err);
+			return false;
+		}
 		return exist ? "imageSha256" : false;
 	}
 	if (history.filePaths) {
-		const exist = await db.query.historyTable.findFirst({
-			with: {
-				filePaths: history.filePaths,
-			},
-		});
+		const [err, exist] = await to(
+			db.select().from(historyTable).where(eq(historyTable.filePaths, history.filePaths)).limit(1),
+		);
+		if (err && is.dev) {
+			console.error(err);
+			return false;
+		}
 		return exist ? "filePaths" : false;
 	}
 	if (history.plainText) {
-		const exist = await db.query.historyTable.findFirst({
-			with: {
-				plainText: history.plainText,
-			},
-		});
+		const [err, exist] = await to(
+			db.select().from(historyTable).where(eq(historyTable.plainText, history.plainText)).limit(1),
+		);
+		if (err && is.dev) {
+			console.error(err);
+			return false;
+		}
 		return exist ? "plainText" : false;
 	}
 	return false;
