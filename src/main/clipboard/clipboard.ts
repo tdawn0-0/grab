@@ -1,4 +1,5 @@
 import { is } from "@electron-toolkit/utils";
+import to from "await-to-js";
 import { eq } from "drizzle-orm";
 import { clipboard } from "electron";
 import clipboardEx from "electron-clipboard-ex";
@@ -25,16 +26,25 @@ async function clipboardChangeHandler() {
 	const existColumn = await isHistoryExist(history);
 
 	if (existColumn && history[existColumn]) {
-		db.update(historyTable)
-			.set({
-				timestamp: new Date(),
-				...history,
-			})
-			.where(eq(historyTable[existColumn], history[existColumn]));
+		const [err] = await to(
+			db
+				.update(historyTable)
+				.set({
+					timestamp: new Date(),
+					...history,
+				})
+				.where(eq(historyTable[existColumn], history[existColumn])),
+		);
+		if (is.dev) {
+			console.error(err);
+		}
 		return;
 	}
 
-	db.insert(historyTable).values(history);
+	const [err] = await to(db.insert(historyTable).values(history));
+	if (is.dev) {
+		console.error(err);
+	}
 }
 
 async function clipboardToHistory(formats: string[]) {
