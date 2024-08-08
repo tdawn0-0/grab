@@ -106,7 +106,7 @@ async function isHistoryExist(history: NewHistory): Promise<keyof NewHistory | f
 			console.error(err);
 			return false;
 		}
-		return exist ? "imageSha256" : false;
+		return exist?.[0] ? "imageSha256" : false;
 	}
 	if (history.filePaths) {
 		const [err, exist] = await to(
@@ -116,7 +116,7 @@ async function isHistoryExist(history: NewHistory): Promise<keyof NewHistory | f
 			console.error(err);
 			return false;
 		}
-		return exist ? "filePaths" : false;
+		return exist?.[0] ? "filePaths" : false;
 	}
 	if (history.plainText) {
 		const [err, exist] = await to(
@@ -126,7 +126,7 @@ async function isHistoryExist(history: NewHistory): Promise<keyof NewHistory | f
 			console.error(err);
 			return false;
 		}
-		return exist ? "plainText" : false;
+		return exist?.[0] ? "plainText" : false;
 	}
 	return false;
 }
