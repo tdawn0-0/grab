@@ -1,5 +1,5 @@
 import { electronApp, optimizer } from "@electron-toolkit/utils";
-import { app, ipcMain } from "electron";
+import { app, globalShortcut, ipcMain } from "electron";
 import { initDatabase } from "../db/db";
 import { startListenClipboard } from "./clipboard/clipboard";
 import { createWindow } from "./create-window";
@@ -27,7 +27,16 @@ app.whenReady().then(async () => {
 		// dock icon is clicked and there are no other windows open.
 		createWindow();
 	});
-	createWindow();
+	const mainwindow = createWindow();
+
+	globalShortcut.register("Shift+CommandOrControl+C", () => {
+		if (mainwindow.isVisible()) {
+			mainwindow.hide();
+		} else {
+			createWindow();
+		}
+		console.log("Electron loves global shortcuts!");
+	});
 });
 
 // Quit when all windows are closed, except on macOS. There, it's common

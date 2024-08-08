@@ -6,7 +6,7 @@ import icon from "../../resources/icon.png?asset";
 let mainWindow: BrowserWindow | null = null;
 const winHeight = 300;
 
-export function createWindow(): void {
+export function createWindow(): BrowserWindow {
 	const cursor = screen.getCursorScreenPoint();
 	const display = screen.getDisplayNearestPoint(cursor);
 	const { x, y, width, height: safeHeight } = display.workArea;
@@ -18,7 +18,7 @@ export function createWindow(): void {
 			height: winHeight,
 		});
 		mainWindow.show();
-		return;
+		return mainWindow;
 	}
 	// Create the browser window.
 	mainWindow = new BrowserWindow({
@@ -65,4 +65,5 @@ export function createWindow(): void {
 	} else {
 		mainWindow.loadFile(join(__dirname, "../renderer/index.html"));
 	}
+	return mainWindow;
 }
