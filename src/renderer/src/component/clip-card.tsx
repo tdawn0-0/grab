@@ -21,7 +21,7 @@ export function ClipCard(props: CardProps) {
 		<Card
 			{...props}
 			ref={cardRef}
-			className="group relative h-60 w-60 bg-neutral-900 shadow-large"
+			className="group relative h-60 w-60 bg-neutral-200 dark:bg-neutral-800/15 shadow-large"
 			radius="md"
 			onMouseMove={onMouseMove}
 		>
@@ -41,8 +41,8 @@ export function ClipCard(props: CardProps) {
 			</LazyMotion>
 			<CardBody className="px-6 pb-8 pt-4">
 				<div className="flex flex-col gap-2">
-					<p className="text-xl text-neutral-50">Clipboard Item</p>
-					<p className="text-small text-neutral-400">
+					<p className="text-xl dark:text-neutral-50">Clipboard Item</p>
+					<p className="text-small dark:text-neutral-400">
 						Outline, monitor, and deliver extensive work elements from inception to completion using
 						project management and strategic roadmaps.
 					</p>
