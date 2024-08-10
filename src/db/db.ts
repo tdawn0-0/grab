@@ -27,7 +27,7 @@ const unpackedPath = path.join(resourcesPath, "../app.asar.unpacked");
 
 const migratePath = is.dev
 	? path.join(__dirname, "../../resources/drizzle")
-	: path.join(unpackedPath, "drizzle");
+	: path.join(unpackedPath, "resources", "drizzle");
 
 export async function initDatabase() {
 	return migrate(db, {

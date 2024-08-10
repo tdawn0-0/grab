@@ -27,18 +27,23 @@ class ClipboardEventListener extends EventEmitter {
 							"../../resources/clipboard-bin",
 							"clipboard-event-handler-win32.exe",
 						)
-					: path.join(unpackedPath, "clipboard-bin", "clipboard-event-handler-win32.exe");
+					: path.join(
+							unpackedPath,
+							"resources",
+							"clipboard-bin",
+							"clipboard-event-handler-win32.exe",
+						);
 				this.child = execFile(filePath);
 			} else if (platform === "linux") {
 				const filePath = is.dev
 					? path.join(__dirname, "../../resources/clipboard-bin", "clipboard-event-handler-linux")
-					: path.join(unpackedPath, "clipboard-bin", "clipboard-event-handler-linux");
+					: path.join(unpackedPath, "resources", "clipboard-bin", "clipboard-event-handler-linux");
 				fs.chmodSync(filePath, "755");
 				this.child = execFile(filePath);
 			} else if (platform === "darwin") {
 				const filePath = is.dev
 					? path.join(__dirname, "../../resources/clipboard-bin", "clipboard-event-handler-mac")
-					: path.join(unpackedPath, "clipboard-bin", "clipboard-event-handler-mac");
+					: path.join(unpackedPath, "resources", "clipboard-bin", "clipboard-event-handler-mac");
 				fs.chmodSync(filePath, "755");
 				this.child = execFile(filePath);
 			} else {
