@@ -22,10 +22,15 @@ if (!fs.existsSync(dbFolder)) {
 const sqlite = new Database(dbPath);
 export const db = drizzle(sqlite, { schema });
 
+const resourcesPath = app.getAppPath();
+const unpackedPath = path.join(resourcesPath, "../app.asar.unpacked");
+
+const migratePath = is.dev
+	? path.join(__dirname, "../../resources/drizzle")
+	: path.join(unpackedPath, "drizzle");
+
 export async function initDatabase() {
 	return migrate(db, {
-		migrationsFolder: is.dev
-			? path.join(__dirname, "../../resources/drizzle")
-			: path.join(process.resourcesPath, "drizzle"),
+		migrationsFolder: migratePath,
 	});
 }

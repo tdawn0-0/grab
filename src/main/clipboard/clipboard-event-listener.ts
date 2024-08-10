@@ -4,8 +4,11 @@ import * as fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { is } from "@electron-toolkit/utils";
+import { app } from "electron";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const resourcesPath = app.getAppPath();
+const unpackedPath = path.join(resourcesPath, "../app.asar.unpacked");
 
 class ClipboardEventListener extends EventEmitter {
 	private child: ChildProcess | null;
@@ -24,18 +27,18 @@ class ClipboardEventListener extends EventEmitter {
 							"../../resources/clipboard-bin",
 							"clipboard-event-handler-win32.exe",
 						)
-					: path.join(process.resourcesPath, "clipboard-bin", "clipboard-event-handler-win32.exe");
+					: path.join(unpackedPath, "clipboard-bin", "clipboard-event-handler-win32.exe");
 				this.child = execFile(filePath);
 			} else if (platform === "linux") {
 				const filePath = is.dev
 					? path.join(__dirname, "../../resources/clipboard-bin", "clipboard-event-handler-linux")
-					: path.join(process.resourcesPath, "clipboard-bin", "clipboard-event-handler-linux");
+					: path.join(unpackedPath, "clipboard-bin", "clipboard-event-handler-linux");
 				fs.chmodSync(filePath, "755");
 				this.child = execFile(filePath);
 			} else if (platform === "darwin") {
 				const filePath = is.dev
 					? path.join(__dirname, "../../resources/clipboard-bin", "clipboard-event-handler-mac")
-					: path.join(process.resourcesPath, "clipboard-bin", "clipboard-event-handler-mac");
+					: path.join(unpackedPath, "clipboard-bin", "clipboard-event-handler-mac");
 				fs.chmodSync(filePath, "755");
 				this.child = execFile(filePath);
 			} else {
