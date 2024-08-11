@@ -29,11 +29,11 @@ app.whenReady().then(async () => {
 		// dock icon is clicked and there are no other windows open.
 		createWindow();
 	});
-	const mainwindow = createWindow();
+	const mainWindow = createWindow();
 
 	globalShortcut.register("Shift+CommandOrControl+C", () => {
-		if (mainwindow.isVisible()) {
-			mainwindow.hide();
+		if (mainWindow.isVisible()) {
+			mainWindow.hide();
 		} else {
 			createWindow();
 		}
