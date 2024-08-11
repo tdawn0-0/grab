@@ -5,9 +5,8 @@ import { db } from "./db";
 
 function getHistories(
 	_: IpcMainInvokeEvent,
-	options: { limit: number; offset: number; keyword: string },
+	{ limit = 100, offset = 0, keyword }: { limit?: number; offset?: number; keyword?: string } = {},
 ): Promise<History[]> {
-	const { limit = 100, offset = 0, keyword } = options;
 	const query = db
 		.select()
 		.from(historyTable)
@@ -21,8 +20,13 @@ function getHistories(
 	return query;
 }
 
+function ping() {
+	return "pong";
+}
+
 export const mainHandlers = {
 	getHistories,
+	ping,
 };
 
 export type MainHandlers = typeof mainHandlers;
