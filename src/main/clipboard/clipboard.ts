@@ -3,8 +3,8 @@ import { to } from "await-to-js";
 import { eq } from "drizzle-orm";
 import { clipboard } from "electron";
 import clipboardEx from "electron-clipboard-ex";
-import { db } from "../../db/db";
 import { type NewHistory, historyTable } from "../../db/schema";
+import { db } from "../db";
 import { calculateHashForBuffer } from "../hash";
 import { clipboardEventListener } from "./clipboard-event-listener";
 

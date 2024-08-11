@@ -6,7 +6,7 @@ import Database from "better-sqlite3";
 import { drizzle } from "drizzle-orm/better-sqlite3";
 import { migrate } from "drizzle-orm/better-sqlite3/migrator";
 import { app } from "electron";
-import * as schema from "./schema";
+import * as schema from "../db/schema";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 

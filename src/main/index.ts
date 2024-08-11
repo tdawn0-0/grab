@@ -1,8 +1,8 @@
 import { electronApp, optimizer } from "@electron-toolkit/utils";
 import { app, globalShortcut, ipcMain } from "electron";
-import { initDatabase } from "../db/db";
 import { startListenClipboard } from "./clipboard/clipboard";
 import { createWindow } from "./create-window";
+import { initDatabase } from "./db";
 
 app.whenReady().then(async () => {
 	// Set app user model id for windows
