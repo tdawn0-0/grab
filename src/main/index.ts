@@ -3,6 +3,7 @@ import { app, globalShortcut, ipcMain } from "electron";
 import { startListenClipboard } from "./clipboard/clipboard";
 import { createWindow } from "./create-window";
 import { initDatabase } from "./db";
+import { mainHandlers } from "./query-handler";
 
 app.whenReady().then(async () => {
 	// Set app user model id for windows
@@ -19,8 +20,9 @@ app.whenReady().then(async () => {
 
 	startListenClipboard();
 
-	// IPC test
-	ipcMain.on("ping", () => console.log("pong"));
+	for (const [key, value] of Object.entries(mainHandlers)) {
+		ipcMain.handle(key, value);
+	}
 
 	app.on("activate", () => {
 		// On macOS it's common to re-create a window in the app when the

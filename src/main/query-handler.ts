@@ -1,10 +1,12 @@
 import { desc, like } from "drizzle-orm";
+import type { IpcMainInvokeEvent } from "electron";
 import { type History, historyTable } from "../db/schema";
 import { db } from "./db";
 
-export function getHistories(options: { limit: number; offset: number; keyword: string }): Promise<
-	History[]
-> {
+function getHistories(
+	_: IpcMainInvokeEvent,
+	options: { limit: number; offset: number; keyword: string },
+): Promise<History[]> {
 	const { limit = 100, offset = 0, keyword } = options;
 	const query = db
 		.select()
@@ -18,3 +20,9 @@ export function getHistories(options: { limit: number; offset: number; keyword: 
 	}
 	return query;
 }
+
+export const mainHandlers = {
+	getHistories,
+};
+
+export type MainHandlers = typeof mainHandlers;
