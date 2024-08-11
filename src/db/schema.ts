@@ -30,3 +30,5 @@ export const historyTable = sqliteTable(
 );
 
 export type NewHistory = typeof historyTable.$inferInsert;
+
+export type History = typeof historyTable.$inferSelect;
