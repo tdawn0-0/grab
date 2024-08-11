@@ -6,6 +6,7 @@ import { useDarkMode } from "./hook/use-dark-mode";
 
 function App(): React.JSX.Element {
 	useDarkMode();
+	window.api.getHistories().then((v) => console.log(v));
 	return (
 		<div className="h-screen w-screen p-2 flex items-center">
 			<VirtualList />
