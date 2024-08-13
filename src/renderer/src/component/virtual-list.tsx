@@ -19,6 +19,7 @@ export function VirtualList() {
 		getNextPageParam: (lastPage, _, lastPageParam) =>
 			lastPage.length === 100 ? lastPageParam + 1 : null,
 		initialPageParam: 0,
+		refetchOnWindowFocus: "always",
 	});
 
 	const allData = data ? data.pages.flat() : [];
