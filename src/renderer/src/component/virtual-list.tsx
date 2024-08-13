@@ -19,7 +19,6 @@ export function VirtualList() {
 		getNextPageParam: (lastPage, _, lastPageParam) =>
 			lastPage.length === 100 ? lastPageParam + 1 : null,
 		initialPageParam: 0,
-		refetchInterval: 1000,
 	});
 
 	const allData = data ? data.pages.flat() : [];
@@ -34,8 +33,10 @@ export function VirtualList() {
 		overscan: 5,
 	});
 
+	const renderItems = columnVirtualizer.getVirtualItems();
+
 	useEffect(() => {
-		const [lastItem] = [...columnVirtualizer.getVirtualItems()].reverse();
+		const [lastItem] = [...renderItems].reverse();
 
 		if (!lastItem) {
 			return;
@@ -44,13 +45,7 @@ export function VirtualList() {
 		if (lastItem.index >= allData.length - 1 && hasNextPage && !isFetchingNextPage) {
 			fetchNextPage();
 		}
-	}, [
-		hasNextPage,
-		fetchNextPage,
-		allData.length,
-		isFetchingNextPage,
-		columnVirtualizer.getVirtualItems(),
-	]);
+	}, [hasNextPage, fetchNextPage, allData.length, isFetchingNextPage, renderItems]);
 
 	if (status === "pending") {
 		return <span>Loading...</span>;
