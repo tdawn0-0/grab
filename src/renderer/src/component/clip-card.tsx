@@ -3,7 +3,7 @@ import { Card, CardBody } from "@nextui-org/react";
 import { LazyMotion, domAnimation, m, useMotionTemplate, useMotionValue } from "framer-motion";
 import React from "react";
 
-export function ClipCard(props: CardProps) {
+export function ClipCard(props: CardProps & { content: string }) {
 	const mouseX = useMotionValue(0);
 	const mouseY = useMotionValue(0);
 
@@ -42,10 +42,7 @@ export function ClipCard(props: CardProps) {
 			<CardBody className="px-6 pb-8 pt-4">
 				<div className="flex flex-col gap-2">
 					<p className="text-xl dark:text-neutral-50">Clipboard Item</p>
-					<p className="text-small dark:text-neutral-400">
-						Outline, monitor, and deliver extensive work elements from inception to completion using
-						project management and strategic roadmaps.
-					</p>
+					<p className="text-small dark:text-neutral-400 truncate break-all">{props.content}</p>
 				</div>
 			</CardBody>
 		</Card>
