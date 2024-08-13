@@ -34,7 +34,7 @@ export function createWindow(): BrowserWindow {
 			sandbox: false,
 		},
 		alwaysOnTop: !is.dev,
-		resizable: false,
+		resizable: is.dev,
 		frame: is.dev,
 		vibrancy: "fullscreen-ui",
 		backgroundMaterial: "mica",
