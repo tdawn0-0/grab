@@ -11,7 +11,7 @@ import * as schema from "../db/schema";
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const dbPath = is.dev
-	? path.join(__dirname, "sqlite.db")
+	? path.join(__dirname, "../../src/db/sqlite.db")
 	: path.join(app.getPath("userData"), "data/sqlite.db");
 
 const dbFolder = path.dirname(dbPath);
