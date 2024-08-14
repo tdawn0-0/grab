@@ -35,15 +35,12 @@ export function ClipCard(props: CardProps & { content: string }) {
               rgba(120, 40, 200, 0.2),
               transparent 80%
             )
-          `, // <- Add your own color here
+          `,
 					}}
 				/>
 			</LazyMotion>
 			<CardBody className="px-6 pb-8 pt-4">
-				<div className="flex flex-col gap-2">
-					<p className="text-xl dark:text-neutral-50">Clipboard Item</p>
-					<p className="text-small dark:text-neutral-400 truncate break-all">{props.content}</p>
-				</div>
+				<p className="dark:text-neutral-400 overflow-hidden break-words">{props.content}</p>
 			</CardBody>
 		</Card>
 	);
