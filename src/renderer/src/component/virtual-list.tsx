@@ -6,7 +6,7 @@ import { ClipCard } from "./clip-card";
 const itemPerPage = 100;
 
 export function VirtualList() {
-	const { status, data, error, isFetchingNextPage, fetchNextPage, hasNextPage } = useInfiniteQuery({
+	const { status, data, isFetchingNextPage, fetchNextPage, hasNextPage } = useInfiniteQuery({
 		queryKey: ["history"],
 		queryFn: async (ctx) => {
 			const result = await window.api.getHistories({
@@ -48,13 +48,6 @@ export function VirtualList() {
 		}
 	}, [hasNextPage, fetchNextPage, allData.length, isFetchingNextPage, renderItems]);
 
-	if (status === "pending") {
-		return <span>Loading...</span>;
-	}
-	if (status === "error") {
-		return <span>Error: {error?.message}</span>;
-	}
-
 	return (
 		<div ref={parentRef} className="h-60 w-full hide-scrollbar overflow-auto">
 			<div
@@ -65,22 +58,23 @@ export function VirtualList() {
 					position: "relative",
 				}}
 			>
-				{columnVirtualizer.getVirtualItems().map((virtualColumn) => {
-					const isLoader = virtualColumn.index > allData.length - 1;
-					const history = allData[virtualColumn.index];
-					return (
-						<ClipCard
-							key={virtualColumn.index}
-							style={{
-								position: "absolute",
-								top: 0,
-								left: 0,
-								transform: `translateX(${virtualColumn.start}px)`,
-							}}
-							content={isLoader ? "loading" : history.plainText ?? ""}
-						/>
-					);
-				})}
+				{status === "success" &&
+					columnVirtualizer.getVirtualItems().map((virtualColumn) => {
+						const isLoader = virtualColumn.index > allData.length - 1;
+						const history = allData[virtualColumn.index];
+						return (
+							<ClipCard
+								key={virtualColumn.index}
+								style={{
+									position: "absolute",
+									top: 0,
+									left: 0,
+									transform: `translateX(${virtualColumn.start}px)`,
+								}}
+								content={isLoader ? "loading" : history.plainText ?? ""}
+							/>
+						);
+					})}
 			</div>
 		</div>
 	);
