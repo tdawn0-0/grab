@@ -1,4 +1,4 @@
-import type { CardProps } from "@nextui-org/react";
+import { type CardProps, Chip } from "@nextui-org/react";
 import { Card, CardBody } from "@nextui-org/react";
 import { LazyMotion, domAnimation, m, useMotionTemplate, useMotionValue } from "framer-motion";
 import React from "react";
@@ -48,8 +48,14 @@ export function ClipCard(props: CardProps & { content: string }) {
 				/>
 			</LazyMotion>
 			<CardBody className="p-6">
-				<p className="overflow-hidden break-words dark:text-white/50">{props.content}</p>
+				<p className="overflow-hidden break-words dark:text-white/50">
+					<div className="around-shape" />
+					{props.content}
+				</p>
 			</CardBody>
+			<Chip color="warning" variant="dot" className="absolute top-2 right-2">
+				Dot
+			</Chip>
 		</Card>
 	);
 }

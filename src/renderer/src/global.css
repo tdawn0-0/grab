@@ -17,3 +17,10 @@ html {
 body {
   background: rgba(0,0,0, 0.1);
 }
+
+.around-shape {
+  float: right;
+  shape-outside: polygon(75% 0%, 75% 10%, 100% 10%, 100% 0%);
+  width: 190px;
+  height: 190px;
+}
