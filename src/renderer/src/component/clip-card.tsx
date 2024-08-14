@@ -21,7 +21,7 @@ export function ClipCard(props: CardProps & { content: string }) {
 		<Card
 			{...props}
 			ref={cardRef}
-			className="group relative h-60 w-60 bg-neutral-200 dark:bg-neutral-800/15 shadow-large"
+			className="group relative h-60 w-60 text-white/75 bg-black/30 dark:bg-neutral-800/15 shadow-md hover:outline-white/30 outline-white/15 outline-1 outline-offset-0"
 			radius="md"
 			onMouseMove={onMouseMove}
 		>
@@ -32,7 +32,7 @@ export function ClipCard(props: CardProps & { content: string }) {
 						background: useMotionTemplate`
             radial-gradient(
               450px circle at ${mouseX}px ${mouseY}px,
-              rgba(120, 40, 200, 0.2),
+              rgba(255, 255, 255, 0.2),
               transparent 80%
             )
           `,
