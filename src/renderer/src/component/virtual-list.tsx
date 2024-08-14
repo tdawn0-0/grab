@@ -49,13 +49,11 @@ export function VirtualList() {
 	}, [hasNextPage, fetchNextPage, allData.length, isFetchingNextPage, renderItems]);
 
 	return (
-		<div ref={parentRef} className="h-60 w-full hide-scrollbar overflow-auto">
+		<div ref={parentRef} className="h-full w-full hide-scrollbar overflow-auto px-2">
 			<div
-				className=""
+				className="relative"
 				style={{
 					width: `${columnVirtualizer.getTotalSize()}px`,
-					height: "100%",
-					position: "relative",
 				}}
 			>
 				{status === "success" &&
@@ -67,7 +65,7 @@ export function VirtualList() {
 								key={virtualColumn.index}
 								style={{
 									position: "absolute",
-									top: 0,
+									top: 15,
 									left: 0,
 									transform: `translateX(${virtualColumn.start}px)`,
 								}}

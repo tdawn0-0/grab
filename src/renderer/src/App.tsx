@@ -6,8 +6,10 @@ import { VirtualList } from "./component/virtual-list";
 import { useDarkMode } from "./hook/use-dark-mode";
 
 focusManager.setEventListener((handleFocus) => {
+	// @ts-ignore
 	window.addEventListener("focus", handleFocus);
 	return () => {
+		// @ts-ignore
 		window.removeEventListener("focus", handleFocus);
 	};
 });
@@ -15,7 +17,7 @@ focusManager.setEventListener((handleFocus) => {
 function App(): React.JSX.Element {
 	useDarkMode();
 	return (
-		<div className="h-screen w-screen p-2 flex items-center">
+		<div className="h-screen w-screen">
 			<VirtualList />
 		</div>
 	);
