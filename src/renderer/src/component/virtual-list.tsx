@@ -13,7 +13,7 @@ export function VirtualList() {
 				limit: itemPerPage,
 				offset: itemPerPage * ctx.pageParam,
 			});
-			console.log(result);
+			import.meta.env.DEV && console.log(result);
 			return result;
 		},
 		getNextPageParam: (lastPage, _, lastPageParam) =>
