@@ -21,13 +21,13 @@ export function ClipCard(props: CardProps & { content: string }) {
 		<Card
 			{...props}
 			ref={cardRef}
-			className="group relative h-60 w-60 text-white/75 bg-black/30 dark:bg-neutral-800/15 shadow-md hover:outline-white/30 outline-white/15 outline-1 outline-offset-0"
+			className="group relative h-60 w-60 bg-black/30 text-white/80 shadow-md outline-1 outline-white/15 outline-offset-0 hover:outline-white/30 dark:bg-neutral-800/15"
 			radius="md"
 			onMouseMove={onMouseMove}
 		>
 			<LazyMotion features={domAnimation}>
 				<m.div
-					className="pointer-events-none absolute -inset-px rounded-xl opacity-0 transition duration-250 group-hover:opacity-100"
+					className="-inset-px pointer-events-none absolute rounded-xl opacity-0 transition duration-250 group-hover:opacity-100"
 					style={{
 						background: useMotionTemplate`
             radial-gradient(
@@ -39,8 +39,8 @@ export function ClipCard(props: CardProps & { content: string }) {
 					}}
 				/>
 			</LazyMotion>
-			<CardBody className="px-6 pb-8 pt-4">
-				<p className="dark:text-neutral-400 overflow-hidden break-words">{props.content}</p>
+			<CardBody className="p-6">
+				<p className="overflow-hidden break-words dark:text-neutral-400">{props.content}</p>
 			</CardBody>
 		</Card>
 	);

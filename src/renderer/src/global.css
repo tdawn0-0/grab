@@ -13,3 +13,7 @@ html {
 .hide-scrollbar::-webkit-scrollbar {
   display: none;  /* Safari and Chrome */
 }
+
+body {
+  background: rgba(0,0,0, 0.1);
+}
