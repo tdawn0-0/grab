@@ -38,6 +38,7 @@ export function createWindow(): BrowserWindow {
 		frame: is.dev,
 		vibrancy: "fullscreen-ui",
 		backgroundMaterial: "mica",
+		visualEffectState: "active",
 	});
 
 	mainWindow.on("ready-to-show", () => {
