@@ -49,7 +49,7 @@ export function VirtualList() {
 	}, [hasNextPage, fetchNextPage, allData.length, isFetchingNextPage, renderItems]);
 
 	return (
-		<div ref={parentRef} className="hide-scrollbar h-full w-full overflow-auto px-2">
+		<div ref={parentRef} className="hide-scrollbar h-full w-full overflow-auto px-4">
 			<div
 				className="relative"
 				style={{
