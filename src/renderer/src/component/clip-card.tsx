@@ -48,10 +48,10 @@ export function ClipCard(props: CardProps & { content: string }) {
 				/>
 			</LazyMotion>
 			<CardBody className="p-6">
-				<p className="overflow-hidden break-words dark:text-white/50">
+				<div className="overflow-hidden break-words dark:text-white/50">
 					<div className="around-shape" />
 					{props.content}
-				</p>
+				</div>
 			</CardBody>
 			<Chip color="warning" variant="dot" className="absolute top-2 right-2">
 				Dot
