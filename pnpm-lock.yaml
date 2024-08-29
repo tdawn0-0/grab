@@ -10,10 +10,10 @@ importers:
     dependencies:
       '@electron-toolkit/preload':
         specifier: ^3.0.1
-        version: 3.0.1(electron@29.4.5)
+        version: 3.0.1(electron@31.4.0)
       '@electron-toolkit/utils':
         specifier: ^3.0.0
-        version: 3.0.0(electron@29.4.5)
+        version: 3.0.0(electron@31.4.0)
       '@nextui-org/react':
         specifier: ^2.4.6
         version: 2.4.6(@types/react@18.3.3)(framer-motion@11.3.21(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(tailwindcss@3.4.7)
@@ -79,8 +79,8 @@ importers:
         specifier: ^0.23.1
         version: 0.23.1
       electron:
-        specifier: ^29.4.5
-        version: 29.4.5
+        specifier: ^31.4.0
+        version: 31.4.0
       electron-builder:
         specifier: ^24.13.3
         version: 24.13.3(electron-builder-squirrel-windows@24.13.3(dmg-builder@24.13.3))
@@ -2642,8 +2642,8 @@ packages:
       '@swc/core':
         optional: true
 
-  electron@29.4.5:
-    resolution: {integrity: sha512-DlEuzGbWBYl1Qr0qUYgNZdoixJg4YGHy2HC6fkRjSXSlb01UrQ5ORi8hNLzelzyYx8rNQyyE3zDUuk9EnZwYuA==}
+  electron@31.4.0:
+    resolution: {integrity: sha512-YTwKoAA+nrJMlI1TTHnIXLYWoQLKnhbkz0qxZcI7Hadcy0UaFMFs9xzwvH2MnrRpVJy7RKo49kVGuvSdRl8zMA==}
     engines: {node: '>= 12.20.55'}
     hasBin: true
 
@@ -4212,17 +4212,17 @@ snapshots:
 
   '@drizzle-team/brocli@0.8.2': {}
 
-  '@electron-toolkit/preload@3.0.1(electron@29.4.5)':
+  '@electron-toolkit/preload@3.0.1(electron@31.4.0)':
     dependencies:
-      electron: 29.4.5
+      electron: 31.4.0
 
   '@electron-toolkit/tsconfig@1.0.1(@types/node@22.1.0)':
     dependencies:
       '@types/node': 22.1.0
 
-  '@electron-toolkit/utils@3.0.0(electron@29.4.5)':
+  '@electron-toolkit/utils@3.0.0(electron@31.4.0)':
     dependencies:
-      electron: 29.4.5
+      electron: 31.4.0
 
   '@electron/asar@3.2.10':
     dependencies:
@@ -7330,7 +7330,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  electron@29.4.5:
+  electron@31.4.0:
     dependencies:
       '@electron/get': 2.0.3
       '@types/node': 20.14.14
