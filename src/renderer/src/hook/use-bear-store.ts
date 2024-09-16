@@ -1,11 +1,10 @@
-import { create } from "zustand";
+import { createStore } from "@xstate/store";
 
-interface BearState {
-	darkMode: boolean;
-	setDarkMode: (v: boolean) => void;
-}
-
-export const useBearStore = create<BearState>((set) => ({
-	darkMode: window.matchMedia("(prefers-color-scheme: dark)").matches,
-	setDarkMode: (v) => set({ darkMode: v }),
-}));
+export const useBearStore = createStore(
+	{ darkMode: window.matchMedia("(prefers-color-scheme: dark)").matches },
+	{
+		setDarkMode: {
+			darkMode: (_, event: { newState: boolean }) => event.newState,
+		},
+	},
+);
