@@ -1,17 +1,16 @@
 import { useEffect } from "react";
-import { useBearStore } from "./use-bear-store";
+import { store } from "./store";
 
 export function useDarkMode() {
-	const setDarkMode = useBearStore((state) => state.setDarkMode);
 	useEffect(() => {
 		const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
 
 		const handleChange = (event: MediaQueryListEvent) => {
 			if (event.matches) {
-				setDarkMode(true);
+				store.send({ type: "setDarkMode", newState: true });
 				document.body.classList.add("dark");
 			} else {
-				setDarkMode(false);
+				store.send({ type: "setDarkMode", newState: false });
 				document.body.classList.remove("dark");
 			}
 		};
@@ -30,5 +29,5 @@ export function useDarkMode() {
 		return () => {
 			mediaQuery.removeEventListener("change", handleChange);
 		};
-	}, [setDarkMode]);
+	}, []);
 }

@@ -1,11 +1,12 @@
 import { type CardProps, Chip } from "@nextui-org/react";
 import { Card, CardBody } from "@nextui-org/react";
+import { useSelector } from "@xstate/store/react";
 import { LazyMotion, domAnimation, m, useMotionTemplate, useMotionValue } from "framer-motion";
 import React from "react";
-import { useBearStore } from "../hook/use-bear-store";
+import { store } from "../hook/store";
 
 export function ClipCard(props: CardProps & { content: string }) {
-	const darkMode = useBearStore((state) => state.darkMode);
+	const darkMode = useSelector(store, (state) => state.context.darkMode);
 	const mouseX = useMotionValue(0);
 	const mouseY = useMotionValue(0);
 
